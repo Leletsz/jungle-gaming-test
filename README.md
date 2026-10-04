@@ -2,7 +2,7 @@
 
 Marketplace de NFTs desenvolvido como solução para o [Frontend Challenge](https://github.com/junglegaming/frontend-challenge) da Jungle Gaming.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - **Catálogo** com busca, filtros por categoria e rede, abas (todos / novos / em alta) e paginação — estado sincronizado na URL
 - **Detalhe do NFT** com seleção de edição, controle de quantidade e botão de compra
@@ -11,7 +11,7 @@ Marketplace de NFTs desenvolvido como solução para o [Frontend Challenge](http
 - **Confirmação de pedido** com estados confirmado e recusado
 - **Login / Cadastro** via modal (Dialog no desktop, tela cheia no mobile) com sessão persistente
 
-## 🛠 Stack
+## Stack
 
 | Responsabilidade | Tecnologia |
 |---|---|
@@ -25,7 +25,7 @@ Marketplace de NFTs desenvolvido como solução para o [Frontend Challenge](http
 | Mocking de API | MSW (Mock Service Worker) |
 | Build | Vite |
 
-## ▶️ Como rodar
+## Como rodar
 
 ```bash
 # Instalar dependências
@@ -40,7 +40,7 @@ npm run build
 
 Acesse `http://localhost:5173`
 
-## 🔐 Credenciais de teste
+## Credenciais de teste
 
 Use qualquer e-mail com a senha `123456` para fazer login.
 
@@ -49,7 +49,7 @@ E-mail: teste@kurio.io
 Senha:  123456
 ```
 
-## 📁 Estrutura
+## Estrutura
 
 ```
 src/
@@ -62,7 +62,7 @@ src/
 └── types/        # Tipos TypeScript da API
 ```
 
-## 📌 Decisões técnicas
+## Decisões técnicas
 
 - **Estado na URL** — filtros, busca, tab e paginação usam `validateSearch` do TanStack Router, sobrevivendo a refresh e navegação pelo histórico
 - **Precisão ETH** — cálculos de preço usam `BigInt` para evitar perda de precisão com ponto flutuante
