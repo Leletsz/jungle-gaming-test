@@ -1,0 +1,16 @@
+@import "tailwindcss";
+body {
+  background-color: #140d0a;
+  color: #f1e4d6;
+  font-family: var(--font-mono);
+}
+
+@theme inline {
+  --color-kurio-selected: #e89b55;
+  --color-kurio-btn: hsla(28, 60%, 56%, 1);
+  --color-kurio-text-muted: #cfb28c;
+  --color-kurio-border: #d28a4c;
+  --color-surface-card: #241612;
+  --color-kurio-text-secondary: #b39463;
+  --color-kurio-card: #231816;
+}
