@@ -36,10 +36,9 @@ const queryClient = new QueryClient({
 });
 
 async function prepare() {
-  if (import.meta.env.DEV) {
-    const { worker } = await import("./mocks/browser");
-    return worker.start({ onUnhandledRequest: "bypass" });
-  }
+  // Inicializamos o MSW em produção também, pois não temos backend real
+  const { worker } = await import("./mocks/browser");
+  return worker.start({ onUnhandledRequest: "bypass" });
 }
 
 prepare().then(() => {
