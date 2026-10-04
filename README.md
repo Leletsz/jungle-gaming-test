@@ -1,75 +1,71 @@
-# React + TypeScript + Vite
+# Kurio — NFT Marketplace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketplace de NFTs desenvolvido como solução para o [Frontend Challenge](https://github.com/junglegaming/frontend-challenge) da Jungle Gaming.
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Catálogo** com busca, filtros por categoria e rede, abas (todos / novos / em alta) e paginação — estado sincronizado na URL
+- **Detalhe do NFT** com seleção de edição, controle de quantidade e botão de compra
+- **Carrinho** com edição de quantidades, remoção de itens, subtotal, taxa de rede e persistência no `localStorage`
+- **Checkout** multi-step: formulário do colecionador → revisão → processamento, com proteção contra double-submit
+- **Confirmação de pedido** com estados confirmado e recusado
+- **Login / Cadastro** via modal (Dialog no desktop, tela cheia no mobile) com sessão persistente
 
-## React Compiler
+## 🛠 Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Responsabilidade | Tecnologia |
+|---|---|
+| Interface | React 19 |
+| Linguagem | TypeScript |
+| Roteamento | TanStack Router |
+| Estado remoto | TanStack Query |
+| Cliente HTTP | Axios |
+| Estilização | Tailwind CSS |
+| Componentes | shadcn/ui |
+| Mocking de API | MSW (Mock Service Worker) |
+| Build | Vite |
 
-## Expanding the ESLint configuration
+## ▶️ Como rodar
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Instalar dependências
+npm install
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Rodar em desenvolvimento
+npm run dev
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# Build de produção
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Acesse `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔐 Credenciais de teste
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Use qualquer e-mail com a senha `123456` para fazer login.
 
 ```
+E-mail: teste@kurio.io
+Senha:  123456
+```
+
+## 📁 Estrutura
+
+```
+src/
+├── api/          # Clientes HTTP (Axios)
+├── components/   # Componentes reutilizáveis (UI, Navbar, Sidebar, AuthModal)
+├── context/      # Contextos globais (carrinho, autenticação)
+├── mocks/        # Handlers MSW e dados mockados
+├── pages/        # Páginas (Home, NftDetail, Cart, Checkout, Order)
+├── routes/       # Configuração de rotas (TanStack Router)
+└── types/        # Tipos TypeScript da API
+```
+
+## 📌 Decisões técnicas
+
+- **Estado na URL** — filtros, busca, tab e paginação usam `validateSearch` do TanStack Router, sobrevivendo a refresh e navegação pelo histórico
+- **Precisão ETH** — cálculos de preço usam `BigInt` para evitar perda de precisão com ponto flutuante
+- **Dialog responsivo** — mesmo componente, fullscreen no mobile e modal centralizado no desktop (md+)
+- **Carrinho persistente** — serializado no `localStorage` e hidratado no carregamento
+- **Sessão** — token e dados do usuário persistidos no `localStorage`, token injetado automaticamente nos headers do Axios
