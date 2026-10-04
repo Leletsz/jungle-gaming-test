@@ -9,8 +9,8 @@ import { useState } from "react";
 const navigation = [
   { label: "Inicio", href: "/" },
   { label: "Mercado", href: "#" },
-  { label: "Criadores", href: "/creators" },
-  { label: "Aprenda", href: "/learn" },
+  { label: "Criadores", href: "#" },
+  { label: "Aprenda", href: "#" },
 ];
 
 export function Navbar() {
@@ -69,7 +69,7 @@ export function Navbar() {
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-kurio-card border border-kurio-border/30">
                   <User size={14} className="text-kurio-selected" />
-                  <span className="text-sm font-medium text-white max-w-[120px] truncate">
+                  <span className="text-sm font-medium text-white max-w-30 truncate">
                     {user.name}
                   </span>
                 </div>
